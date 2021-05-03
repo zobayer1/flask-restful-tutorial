@@ -1,0 +1,9 @@
+exclude .pre-commit-config.yaml
+exclude .gitignore
+recursive-exclude .github *
+recursive-exclude scripts *.sh
+include requirements.txt
+include README.md
+include .coveragerc
+include tox.ini
+recursive-include tests *.py

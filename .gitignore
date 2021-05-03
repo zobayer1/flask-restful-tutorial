@@ -69,6 +69,7 @@ instance/
 .webassets-cache
 .flaskenv
 .testenv
+myapi/version.py
 
 # Scrapy stuff:
 .scrapy
