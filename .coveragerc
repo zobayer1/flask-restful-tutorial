@@ -1,6 +1,7 @@
 [run]
 omit =
     myapi/version.py
+    myapi/wsgi.py
 
 [report]
 exclude_lines =
