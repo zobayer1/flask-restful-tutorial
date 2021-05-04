@@ -3,7 +3,9 @@ from os import path
 from setuptools import find_packages, setup
 
 install_dependencies = [
-    "importlib-metadata;python_version<'3.8'",
+    "flask-cors",
+    "flask-restful",
+    "python-dotenv",
 ]
 
 try:
