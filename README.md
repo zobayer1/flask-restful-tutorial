@@ -7,9 +7,8 @@ Environment
 -----------
 This demo application is primarily built for POSIX platforms and compatible with Python 3.8 or higher. However, you can
 easily build this application for older python versions with minimal changes. Development dependencies are
-listed in [setup.py](./setup.py) file, however, [requirements.txt](./requirements.txt) file contains the collection of
-all development, testing and distribution dependencies, therefore, should be used to set up virtual environments if
-necessary.
+listed in [setup.py](./setup.py), [requirements.txt](./requirements.txt) contains the collection of all development,
+testing and distribution dependencies, therefore, should be used to set up virtual environments if necessary.
 
     python3.8 -m venv venv  # if not already created
     source venv/bin/activate
@@ -79,7 +78,9 @@ To run tests with Tox with coverage:
     tox -e py38
     tox -e lint
 
-If you have updated dependencies, use the `--recreate` flag with Tox commands.
+If you have updated dependencies, use the `--recreate` flag with Tox commands:
+
+    tox --recreate
 
 Distribution
 ------------
@@ -96,9 +97,11 @@ To create a wheel package, run:
 
     python -m build --wheel
 
+**Note:** This application uses setuptools-scm which will automatically pull package version from git tags.
+
 Deployment
 ----------
-At first, extract or install your application packages. This can be done in two ways.
+First, extract or install your application packages. This can be done in two ways.
 
 **From Source:**
 
