@@ -30,6 +30,11 @@ setup(
     zip_safe=True,
     platforms=["posix"],
     install_requires=install_dependencies,
+    entry_points={
+        "console_scripts": [
+            "myapi = myapi.manage:cli",
+        ],
+    },
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",
         "Environment :: Console",

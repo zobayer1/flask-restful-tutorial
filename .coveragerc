@@ -1,5 +1,6 @@
 [run]
 omit =
+    myapi/manage.py
     myapi/version.py
     myapi/wsgi.py
 
