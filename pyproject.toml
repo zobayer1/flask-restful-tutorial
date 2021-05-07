@@ -23,6 +23,5 @@ exclude = '''
   | scripts
   | build
   | dist
-  | setup.py
 )/
 '''
