@@ -3,6 +3,7 @@ from os import path
 from setuptools import find_packages, setup
 
 install_dependencies = [
+    "click",
     "flask-cors",
     "flask-restful",
     "python-dotenv",
