@@ -4,7 +4,7 @@ import os
 from flask import Flask
 from flask_cors import CORS
 
-from myapi.health import health_blueprint
+from myapi.endpoints.v1.health import health_blueprint
 
 
 def create_app(instance_name, app_name="myapi"):
@@ -21,4 +21,4 @@ def initialize_extensions(app):
 
 
 def initialize_blueprints(app):
-    app.register_blueprint(health_blueprint, url_prefix="/myapi/health")
+    app.register_blueprint(health_blueprint, url_prefix="/myapi/v1/health")

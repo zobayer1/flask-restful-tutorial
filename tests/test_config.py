@@ -4,7 +4,7 @@ from importlib.metadata import version
 
 def test_env(app):
     """Test fails if app was not initialized with testing configurations"""
-    assert app.env == "testing"
+    assert app.config["ENV"] == "testing"
     assert app.testing
 
 
