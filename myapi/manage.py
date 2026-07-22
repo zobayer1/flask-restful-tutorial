@@ -17,5 +17,13 @@ def cli():
     pass
 
 
+@cli.command()
+def env():
+    """Check env variables for the app."""
+    env_vars = ["FLASK_ENV", "FLASK_SECRET", "LOGGING_ROOT", "LOGGING_CONFIG"]
+    for var in env_vars:
+        click.echo(f"${var}={os.getenv(var)}")
+
+
 if __name__ == "__main__":
     cli()

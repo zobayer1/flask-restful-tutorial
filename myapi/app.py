@@ -3,12 +3,22 @@ import os
 
 from flask import Flask
 from flask_cors import CORS
+from logging_.config import YAMLConfig
 
 from myapi.endpoints.v1.health import health_blueprint
 
 
-def create_app(instance_name, app_name="myapi"):
-    app = Flask(app_name, instance_path=os.path.join(os.getcwd(), "instance"), instance_relative_config=True)
+def create_app(instance_name: str, app_name: str = "myapi"):
+    """Creates a Flask app"""
+    instance_path = os.path.join(os.getcwd(), "instance")
+    initialize_logging(f"{instance_name}/logging.yaml", instance_path, silent=True)
+    app = Flask(
+        app_name,
+        instance_path=instance_path,
+        static_url_path="/myapi/static",
+        static_folder="myapi/static",
+        instance_relative_config=True,
+    )
     app.config.from_object("myapi.config")
     app.config.from_pyfile(f"{instance_name}/application.cfg", silent=True)
     initialize_extensions(app)
@@ -16,9 +26,16 @@ def create_app(instance_name, app_name="myapi"):
     return app
 
 
-def initialize_extensions(app):
+def initialize_logging(filename: str, instance_path: str, **kwargs: bool):
+    """Initializes logging, must be done before creating Flask app"""
+    YAMLConfig.from_file(os.path.join(instance_path, filename), **kwargs)
+
+
+def initialize_extensions(app: Flask):
+    """Initializes extensions with app config"""
     CORS(app)
 
 
-def initialize_blueprints(app):
+def initialize_blueprints(app: Flask):
+    """Initializes blueprints with URL prefixes"""
     app.register_blueprint(health_blueprint, url_prefix="/myapi/v1/health")

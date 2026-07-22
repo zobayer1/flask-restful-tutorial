@@ -19,6 +19,7 @@ lib64/
 parts/
 sdist/
 var/
+logs/
 wheels/
 share/python-wheels/
 *.egg-info/
@@ -37,7 +38,6 @@ pip-log.txt
 pip-delete-this-directory.txt
 
 # Application logs
-logs/
 *.log
 
 # Unit test / coverage reports
@@ -65,11 +65,13 @@ db.sqlite3
 db.sqlite3-journal
 
 # Flask stuff:
-instance/
 .webassets-cache
-.flaskenv
-.testenv
+instance/
 myapi/version.py
+
+# only for this template
+# you may consider removing it for a production project
+!.flaskenv
 
 # Scrapy stuff:
 .scrapy

@@ -6,15 +6,13 @@ application ground up following the best RESTful API development practices.
 Environment
 -----------
 This demo application is primarily built for POSIX platforms and compatible with Python 3.8 or higher. However, you can
-easily build this application for older python versions with minimal changes. Development dependencies are
-listed in [setup.py](./setup.py), [requirements.txt](./requirements.txt) contains the collection of all development,
-testing and distribution dependencies, therefore, should be used to set up virtual environments if necessary.
+easily build this application for older python versions with minimal changes. Development dependencies are listed in [`setup.cfg`](./setup.cfg).
 
     python3.8 -m venv venv  # if not already created
     source venv/bin/activate
     pip install --upgrade pip
     pip install build
-    pip install -r requirements.txt
+    pip install -e .[dev,test]
 
 Enable pre-commit for your local repository:
 
@@ -29,6 +27,7 @@ Environment Variables:
 | `FLASK_ENV`              | Flask app instance name                |
 | `FLASK_APP`              | Flask app target module                |
 | `FLASK_SECRET`           | Flask app secret key                   |
+| `LOGGING_ROOT`           | Logging directory path                 |
 
 Development
 -----------
@@ -60,10 +59,10 @@ To start a development server, run:
     export FLASK_ENV=development
     export FLASK_APP=myapi.wsgi:app
     export FLASK_SECRET=bb9ba2817ef62e261d3adaf90c2727bb
+    export LOGGING_ROOT=logs
     flask run -h 0.0.0.0 -p 5000
 
-**Note:** This project utilizes `python-dotenv` library to read environment variables from `.env`, `.flaskenv`, or
-`.testenv` files. You can move all your export commands to such a file to avoid having to type them repeatedly. Be
+**Note:** This project utilizes `python-dotenv` library to read environment variables from `.env`, or, [`.flaskenv`](./.flaskenv) files. You can move all your export commands to such a file to avoid having to type them repeatedly. Be
 careful when running tests using tox, or running application with WSGI tools like gunicorn, as environment variables
 must be set explicitly to work with these environments.
 

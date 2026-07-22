@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from importlib.metadata import version
+from myapi.commons.helpers.metadata import app_version
 
 
 def test_env(app):
@@ -11,4 +11,4 @@ def test_env(app):
 def test_application_version(app):
     """Test fails if importlib metadata could not be loaded from metadata"""
     assert app.name == "myapi"
-    assert len(version(app.name)) > 0
+    assert len(app_version(app.name)) > 0

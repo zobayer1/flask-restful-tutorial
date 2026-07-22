@@ -4,5 +4,6 @@ recursive-exclude .github *
 recursive-exclude scripts *.sh
 include README.md
 include .coveragerc
+include .flaskenv
 include tox.ini
 recursive-include tests *.py
