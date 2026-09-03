@@ -16,8 +16,8 @@ try:
 except AttributeError:  # pragma: no cover
     raise RuntimeError("Environment variable $FLASK_SECRET was not set")
 
-"""LOGGING_CONFIG: Path to logging configurations.
+"""SQLALCHEMY_DATABASE_URI: Database connection string.
 
-Logger extension will read configurations from the specified file.
+Relative SQLite paths are resolved against the instance directory.
 """
-LOGGING_CONFIG = os.getenv("LOGGING_CONFIG", f"instance/{ENV}/logging.yaml")
+SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI", f"sqlite:///{ENV}.db")

@@ -4,6 +4,7 @@ import os
 import pytest
 
 from myapi.app import create_app
+from myapi.extensions import db
 
 
 @pytest.fixture(scope="module")
@@ -14,9 +15,16 @@ def app():
             "FLASK_ENV": "testing",
             "FLASK_SECRET": "bb9ba2817ef62e261d3adaf90c2727bb",
             "LOGGING_ROOT": ".",
+            "DATABASE_URI": "sqlite://",
         }
     )
-    return create_app("testing")
+    app = create_app("testing")
+    with app.app_context():
+        db.create_all()
+        yield app
+        db.drop_all()
+        db.session.remove()
+        db.engine.dispose()
 
 
 @pytest.fixture(scope="module")

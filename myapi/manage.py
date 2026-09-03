@@ -5,6 +5,7 @@ import click
 from flask.cli import FlaskGroup
 
 from myapi.app import create_app
+from myapi.extensions import db
 
 
 def create_cli_app():
@@ -20,9 +21,16 @@ def cli():
 @cli.command()
 def env():
     """Check env variables for the app."""
-    env_vars = ["FLASK_ENV", "FLASK_SECRET", "LOGGING_ROOT", "LOGGING_CONFIG"]
+    env_vars = ["FLASK_ENV", "FLASK_SECRET", "LOGGING_ROOT", "DATABASE_URI"]
     for var in env_vars:
         click.echo(f"${var}={os.getenv(var)}")
+
+
+@cli.command()
+def init_db():
+    """Create the database tables."""
+    db.create_all()
+    click.echo("Database tables created.")
 
 
 if __name__ == "__main__":
